@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Personal dashboard</title>
+  <meta name="description" content="Personal Dashboard">
+  <meta name="author" content="@ArtemD">
+
+  <meta property="og:title" content="Personal dashboard to help you start the day">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Personal dashboard to help you start the day">
+  <link rel="stylesheet" href="//unpkg.com/primitive-ui/dist/css/main.css">
+    <style>
+        body {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Personal dashboard</h1>
+    <h2>Weather</h2>
+    <div id="weather">
+        Temprature in Tallinn now: {{ weather }}c
+    </div>
+  <hr>
+    <h2>News</h2>
+    {% for i in news %}
+        <a href="https://yle.fi{{i['link']}}">{{i['title']}}</a><br>
+    {% endfor %}
+
+</body>
+</html>
