@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Htmx</title>
+    <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css">
+    <style>
+        body {
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Get current weather</h1>
+    <form id="form">
+        <input type="text" id="city" value="helsinki" name="city" />
+        <button id="submit" >Get weather</button>
+    </form>
+
+    Weather now: <div id="weather">
+
+    </div>
+
+    <script>
+        $(document).ready(function (e) {
+
+            $('form').submit(function(e){
+                e.preventDefault();
+            });
+
+            $('#submit').click(
+                function () {
+                    const settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + $('#city').val() + "&appid=c6e1f3872c742",
+                        "method": "GET",
+                        "headers": {}
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response['main']['temp'])
+                        $('#weather').html(response['main']['temp'])
+                    });
+                }
+            )
+
+
+        });
+    </script>
+</body>
+
+</html>
